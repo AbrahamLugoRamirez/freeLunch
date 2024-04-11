@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "name": "Ensalada César",
+    "ingredients": [
+      { "name": "Lettuce", "count": "1" },
+      { "name": "Chicken", "count": "1" },
+      { "name": "Cheese", "count": "1" },
+      { "name": "Lemon", "count": "1" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Arroz con Pollo",
+    "ingredients": [
+      { "name": "Rice", "count": "1" },
+      { "name": "Chicken", "count": "2" },
+      { "name": "Onion", "count": "1" },
+      { "name": "Ketchup", "count": "1" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tortilla de Patatas",
+    "ingredients": [
+      { "name": "Potato", "count": "2" },
+      { "name": "Onion", "count": "1" },
+      { "name": "Meat", "count": "1" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Espaguetis con Salsa de Tomate",
+    "ingredients": [
+      { "name": "Tomato", "count": "2" },
+      { "name": "Ketchup", "count": "2" },
+      { "name": "Onion", "count": "1" },
+      { "name": "Meat", "count": "2" },
+      { "name": "Rice", "count": "1" }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Sandwich de Pollo",
+    "ingredients": [
+      { "name": "Chicken", "count": "2" },
+      { "name": "Lettuce", "count": "2" },
+      { "name": "Tomato", "count": "1" },
+      { "name": "Cheese", "count": "2" }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Papas Fritas con Ketchup",
+    "ingredients": [
+      { "name": "Potato", "count": "2" },
+      { "name": "Ketchup", "count": "3" }
+    ]
+  }
+]
