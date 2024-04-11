@@ -1,53 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>freeLunch</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <style>
-      body {
-        background-color: #f7f7f7;
-      }
-      .centerItem {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>freeLunch</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-      button {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #333;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row align-items-start">
-        <div class="col">
-          <form class="centerItem" action="/kitchen" method="POST">
-            <button>Servir plato</button>
-          </form>
-          <% if(foodName && !error) { %>
+  <style>
+    body {
+      background-color: #f7f7f7;
+    }
+
+    .centerItem {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 20vh;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .containerScroll {
+      width: 100%;
+      height: 500px;
+      overflow: auto;
+    }
+
+    .content {
+      width: 100%;
+      /* Ancho mayor que el contenedor */
+      height: 300px;
+      /* Altura mayor que el contenedor */
+      background-color: lightgray;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="align-items-start">
+      <div class="col">
+        <form class="centerItem" action="/kitchen" method="POST">
+          <button>Servir plato</button>
+        </form>
+        <% if(foodName && !error) { %>
           <script>
-        const mensajeDesdeElServidor = 'Se preparo: <%= foodName%>';
-              swal({
+            const mensajeDesdeElServidor = 'Se preparo: <%= foodName%>';
+            swal({
               title: "Good job!",
               text: mensajeDesdeElServidor,
               icon: "success",
@@ -55,32 +67,51 @@
             });
           </script>
           <% } %>
-          <% if(error) { %>
-          <div class="alert alert-danger" role="alert">
-            <%= error %>: <%= foodName %>
-          </div>
-          <script>
-            const errorMsj = '<%= error %>: <%= foodName %>';
-                  swal({
+            <% if(error) { %>
+              <div class="alert alert-danger" role="alert">
+                <%= error %>: <%= foodName %>
+              </div>
+              <script>
+                const errorMsj = '<%= error %>: <%= foodName %>';
+                swal({
                   title: "No inventary!",
                   text: errorMsj,
                   icon: "error",
                   button: "confirm!",
                 });
               </script>
-          <% } %>
-        </div>
-        <div class="col centerItem">
-          <tbody>
-            <ol class="list-group list-group-numbered" style="width: 30%">
-              <h3>Inventary:</h3>
-              <% Object.keys(inventory).forEach(function(key) { %>
-              <li class="list-group-item"><%= key %>: <%= inventory[key] %></li>
+              <% } %>
+      </div>
+      <div class="row">
+      <div class="col">
+        <tbody>
+          <ol class="list-group list-group-numbered content" style="width: 100%">
+            <h3>Inventary:</h3>
+            <% Object.keys(inventory).forEach(function(key) { %>
+              <li class="list-group-item">
+                <%= key %>: <%= inventory[key] %>
+              </li>
               <% }); %>
-            </ol>
-          </tbody>
-        </div>
+          </ol>
+        </tbody>
+    
+      </div>
+      <div class="col containerScroll">
+        <tbody>
+          <ol class="list-group list-group-numbered content" style="width: 100%">
+            <h3>History:</h3>
+            <% Object.keys(history.slice().reverse()).forEach(function(key) { %>
+              <li class="list-group-item">
+                <%= history[key] %>
+              </li>
+              <% }); %>
+          </ol>
+        </tbody>
       </div>
     </div>
-  </body>
+   
+    </div>
+  </div>
+</body>
+
 </html>

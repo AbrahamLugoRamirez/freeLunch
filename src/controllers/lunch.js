@@ -1,5 +1,6 @@
 const kitchenRecipes = require("../models/recipes.json");
 const inventory = require("../models/inventary.json");
+const history = require("../models/history.json")
 const swal = require("sweetalert");
 const app = require("./app");
 
@@ -7,6 +8,7 @@ module.exports.mostrar = (req, res) => {
   return res.render("index", {
     kitchenRecipes: kitchenRecipes,
     inventory: inventory,
+    history: history,
     foodName: "",
     error: "",
   });
@@ -48,9 +50,11 @@ module.exports.kitchen = (req, res) => {
       }
     );
     swal("Hello world!");
+    history.push(selectedRecipe.name)
     res.render("index", {
       kitchenRecipes: kitchenRecipes,
       inventory: inventory,
+      history: history,
       foodName: selectedRecipe.name,
       error: "",
     });
@@ -61,6 +65,7 @@ module.exports.kitchen = (req, res) => {
     res.render("index", {
       kitchenRecipes: kitchenRecipes,
       inventory: inventory,
+      history: history,
       foodName: selectedRecipe.name,
       error:
         "No se pueden preparar la receta seleccionada debido a la falta de ingredientes",
