@@ -1,5 +1,5 @@
 const shopIngredients = (ingredientName) => {
-    return 7;
+    return Math.floor(Math.random() * (10 - 4 + 1)) + 4;;
 }
 
 module.exports = {

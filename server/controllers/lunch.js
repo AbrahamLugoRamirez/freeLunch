@@ -3,12 +3,14 @@ const inventory = require("../models/inventary.json");
 const shopIngredients = require("../shop/shopIngredients")
 const history = require("../models/history.json")
 const app = require("./app");
+const shopHistory = require("../models/shopHistory.json")
 
 module.exports.show = (req, res) => {
   return res.render("index", {
     kitchenRecipes: kitchenRecipes,
     inventory: inventory,
     history: history,
+    shopHistory: shopHistory,
     foodName: "",
     error: "",
   });
@@ -30,7 +32,9 @@ module.exports.kitchen = async (req, res) => {
         !inventory[ingredient.name] ||
         inventory[ingredient.name] < ingredient.count
       ) {
-        inventory[ingredient.name] += shopIngredients.shopIngredients(ingredient.name)
+        const count = shopIngredients.shopIngredients(ingredient.name)
+        inventory[ingredient.name] += count;
+        shopHistory.push({ name: ingredient.name, count: count })
       }
     }
     await prepareFood(selectedRecipe, kitchenRecipes, res)
@@ -45,6 +49,7 @@ const prepareFood = async (selectedRecipe, kitchenRecipes, res) => {
     kitchenRecipes: kitchenRecipes,
     inventory: inventory,
     history: history,
+    shopHistory: shopHistory,
     foodName: selectedRecipe.name,
     error: "",
   });
