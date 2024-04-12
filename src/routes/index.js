@@ -1,11 +1,10 @@
 const express = require("express");
-const { run } = require("../controllers/app");
 const router = express.Router();
-const lunchController = require('../controllers/lunch')
+const lunchController = require('../../server/controllers/lunch')
 
-router.get("/", lunchController.mostrar);
+router.get("/", lunchController.show);
 
-router.post("/kitchen", lunchController.kitchen);
+router.get("/kitchen", lunchController.kitchen);
 
 
 module.exports = router;
