@@ -35,15 +35,13 @@
 
     .containerScroll {
       width: 100%;
-      height: 500px;
+      height: 450px;
       overflow: auto;
     }
 
     .content {
       width: 100%;
-      /* Ancho mayor que el contenedor */
       height: 300px;
-      /* Altura mayor que el contenedor */
       background-color: lightgray;
     }
   </style>
@@ -53,7 +51,7 @@
   <div class="container">
     <div class="align-items-start">
       <div class="col">
-        <form class="centerItem" action="/kitchen" method="POST">
+        <form class="centerItem" action="/kitchen" method="get">
           <button>Servir plato</button>
         </form>
         <% if(foodName && !error) { %>
@@ -113,5 +111,4 @@
     </div>
   </div>
 </body>
-
 </html>
