@@ -81,34 +81,70 @@
               <% } %>
       </div>
       <div class="row">
-      <div class="col">
-        <tbody>
-          <ol class="list-group list-group-numbered content" style="width: 100%">
-            <h3>Inventary:</h3>
-            <% Object.keys(inventory).forEach(function(key) { %>
-              <li class="list-group-item">
-                <%= key %>: <%= inventory[key] %>
-              </li>
-              <% }); %>
-          </ol>
-        </tbody>
-    
+        <div class="col">
+          <tbody>
+            <ol class="list-group list-group-numbered content" style="width: 100%">
+              <h3>Inventary:</h3>
+              <% Object.keys(inventory).forEach(function(key) { %>
+                <li class="list-group-item">
+                  <%= key %>: <%= inventory[key] %>
+                </li>
+                <% }); %>
+            </ol>
+          </tbody>
+
+        </div>
+        <div class="col containerScroll">
+          <tbody>
+            <ol class="list-group list-group-numbered content" style="width: 100%">
+              <h3>History:</h3>
+              <% Object.keys(history.slice().reverse()).forEach(function(key) { %>
+                <li class="list-group-item">
+                  <%= history[key] %> <span class="badge text-bg-success">Success</span>
+                </li>
+                <% }); %>
+            </ol>
+          </tbody>
+        </div>
       </div>
-      <div class="col containerScroll">
-        <tbody>
-          <ol class="list-group list-group-numbered content" style="width: 100%">
-            <h3>History:</h3>
-            <% Object.keys(history.slice().reverse()).forEach(function(key) { %>
-              <li class="list-group-item">
-                <%= history[key] %>
-              </li>
-              <% }); %>
-          </ol>
-        </tbody>
+      <br>
+      <div class="row">
+        <div class="col">
+          <tbody>
+            <ol class="list-group list-group-numbered content" style="width: 100%">
+              <h3>Recipies:</h3>
+              <% Object.keys(kitchenRecipes).forEach(function(key) { %>
+                <li class="list-group-item">
+                  <ul>
+                   <%=   JSON.stringify(kitchenRecipes[key].name) %>
+                   <% kitchenRecipes[key].ingredients.forEach(function(key) { %>
+                    <li class="list-group-item">
+                       <%= key.name %>: <%= key.count %>
+                    </li>
+                    <% }); %>
+                  </ul>
+                </li>
+                <% }); %>
+            </ol>
+          </tbody>
+
+        </div>
+        <div class="col containerScroll">
+          <tbody>
+            <ol class="list-group list-group-numbered content" style="width: 100%">
+              <h3>Shop history:</h3>
+              <% shopHistory.forEach(function(key) { %>
+                <li class="list-group-item">
+                  <%= key.name %>: <%= key.count %>
+                </li>
+                <% }); %>
+            </ol>
+          </tbody>
+        </div>
       </div>
-    </div>
-   
+
     </div>
   </div>
 </body>
+
 </html>
